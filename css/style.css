@@ -1,0 +1,74 @@
+header{
+    background-color: #e5eaf5;
+   
+}
+
+body{
+    background-color:#d0bdf4;
+    /*background-image: url("https://github.com/LTUC/amman-irbid-201d24/blob/main/class-08/lab-b/assets/cutter.jpeg?raw=true");*/
+    background-attachment: fixed;
+    ;
+}
+a {
+    display: inline;
+    text-decoration: none;
+    background-color: #e5eaf5;
+
+}
+
+a:visited {
+    color: red
+    font-size:150%;
+    }
+  
+    a:hover {
+    color: hotpink;
+    text-decoration: underline;
+    color:#ffcc00;}
+  
+    a:active {
+    color: blue;
+  }
+  ol {
+    background-color: #ffa8B6
+
+    ;
+  }
+  ol li{
+    color: #dbf3f0;
+    background-color: rgb(236, 195, 212);
+  }
+  
+
+  
+  
+ 
+  footer{
+    display: block;
+    text-align: center;
+    background-color: darkkhaki;
+
+width: 50%;
+height: 30%
+
+
+  }
+  section article img {
+    text-align: center;
+  
+}
+  div img{
+ 
+  width: 200px;
+  padding: 5px;
+  border-radius: 40%;
+ 
+  }
+p{color: rgb(197, 39, 150);
+  background-color:rgb(236, 195, 212);
+ 
+}
+h1{
+  text-align: center;
+
+}
