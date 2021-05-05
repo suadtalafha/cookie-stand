@@ -1,298 +1,153 @@
 'use strict'
-let hoursWork =['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
-let seattle = {
-cityName : 'Saettle',
-minCustumer :23 ,
-maxCustumer : 65 ,
-avgCustumer : 6.3,
-numbCustperhour :[],
-cookeiSales :[],
-total:0,
-
-randomCustumer : function (minCustumer,maxCustumer){
-    minCustumer = Math.ceil(this.minCustumer);
-   maxCustumer = Math.floor(this.maxCustumer);
-  for (let i=0;i<hoursWork.length;i++){ 
-    this.numbCustperhour.push( Math.floor(Math.random() * (maxCustumer - minCustumer + 1) + minCustumer));
-
-  }
-},
-
-cookeiPerhour : function (){
-
- for(let hour=0;hour<hoursWork.length;hour++){
-
-    this.cookeiSales.push(Math.ceil(this.numbCustperhour[hour]*this.avgCustumer)) ;
-    this.total += this.cookeiSales[hour]
-
- }
-},
-
-render : function(){
+let hoursWork =['6:00am','7:00am','8:00am','9:00am','10:00am','11:00am','12:00pm','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','6:00pm','7:00pm'];
 
 let container =document.getElementById('city');
-let h2El = document.createElement('h2');
-container.appendChild(h2El);
-h2El.textContent=this.cityName;
-let ulEl = document.createElement('ul');
-container.appendChild(ulEl);
-      
+let table =document.createElement("table");
+container.appendChild(table);
+
+let cityesArray =[];
+
+function Cityes(cityName,minCustumer,maxCustumer,avgCookeisale) {
+    this.cityName=cityName;
+    this.minCustumer=minCustumer;
+    this.maxCustumer=maxCustumer;
+    this.avgCookeisale=avgCookeisale;
+    this.numbCustperhour=[];
+    this.cookeiSales=[];
+    this.total=0;
+    cityesArray.push(this);
+}
+Cityes.prototype.randomCustumer=function() {
+    
+    /*let minCustumer = Math.ceil(this.minCustumer);
+    let maxCustumer = Math.floor(this.maxCustumer);*/
+
+   for (let i=0;i<hoursWork.length;i++){ 
+     this.numbCustperhour.push( Math.floor(Math.random() * (this.maxCustumer - this.minCustumer + 1) + this.minCustumer));
+   }
+   
+}
+
+Cityes.prototype.cookeiPerhour=function() {
+    
+    for(let hour=0;hour<hoursWork.length;hour++){
+
+        this.cookeiSales.push(Math.ceil(this.numbCustperhour[hour]*this.avgCookeisale)) ;
+        this.total += this.cookeiSales[hour];
+    }  
+   
+}   
+
+
+
+Cityes.prototype.render=function() {
+//this.cookeiPerhour();
+ 
+let tableTr = document.createElement('tr');
+
+table.appendChild(tableTr);
+
+let tableTd2=document.createElement('td');
+
+tableTr.appendChild(tableTd2);
+
+tableTd2.textContent= this.cityName;
+
 for(let i=0;i<hoursWork.length;i++){
 
-let liEl = document.createElement('li');
-ulEl.appendChild(liEl);
-liEl.textContent=`${hoursWork[i]}:${this.cookeiSales[i]} Cookeis`
+let tableTd8 = document.createElement('td');
 
+tableTr.appendChild(tableTd8);
+tableTd8.textContent=this.cookeiSales[i]
+
+    
+}
+let tableTd3 =document.createElement('td');
+tableTr.appendChild(tableTd3);
+tableTd3.textContent =this.total;
+}
+
+
+
+
+let seattle = new Cityes('seattle',23,65,6.3);
+let tokyo = new Cityes('Tokyo',3,24,12);
+let dubai = new Cityes('Dubai',11,38,37);
+let paris = new Cityes('paris',20,38,2.3);
+let lima = new Cityes('lima',2,16,4.6);
+
+function rowHours() {
+let tableTr2=document.createElement('tr');
+table.appendChild(tableTr2);
+
+let tableTh = document.createElement('th');
+tableTr2.appendChild(tableTh);
+tableTh.textContent= null ;
+
+for (let i=0;i<hoursWork.length;i++){
+
+let tableTh3=document.createElement('th');
+
+tableTr2.appendChild(tableTh3);
+
+tableTh3.textContent=hoursWork[i]
+
+}
+   let tableTh4=document.createElement('th');
+   tableTr2.appendChild(tableTh4);
+   tableTh4.textContent="Daily location total" ;    
+    
+}
+
+function footer() {
+
+    
+    let tableTr3=document.createElement('tr');
+    table.appendChild(tableTr3);
+    let tableTd4=document.createElement('td');
+    tableTr3.appendChild(tableTd4);
+    tableTd4.textContent ="Totals"
+let total =0;
+    for (let i=0;i<hoursWork.length;i++){
+        let total2=0;
+        for (let j=0;j<cityesArray.length;j++){
+
+            total2=total2+ cityesArray[j].cookeiSales[i];
+total += cityesArray[j].cookeiSales[i];
+
+        }
+        let tableTd5 =document.createElement('td');
+        tableTr3.appendChild(tableTd5);
+        tableTd5.textContent=total2;
     }
-
-
-let liEl2 =document.createElement('li');
-ulEl.appendChild(liEl2);
-liEl2.textContent =`Total ${this.total} Cookeis `
-
-
+   
+    let tableTd6 =document.createElement('td');
+    tableTr3.appendChild(tableTd6);
+tableTd6.textContent=total;
 
 }
 
-}
+rowHours();
+
 seattle.randomCustumer();
 seattle.cookeiPerhour();
 seattle.render();
 
+tokyo.randomCustumer();
+tokyo.cookeiPerhour();
+tokyo.render();
 
+dubai.randomCustumer();
+dubai.cookeiPerhour();
+dubai.render();
 
-let tokyo = {
-    cityName : 'Tokyo',
-    minCustumer :3,
-    maxCustumer : 24 ,
-    avgCustumer : 1.2,
-    numbCustperhour :[],
-    cookeiSales :[],
-    total:0,
-    
-    randomCustumer : function (minCustumer,maxCustumer){
-        minCustumer = Math.ceil(this.minCustumer);
-       maxCustumer = Math.floor(this.maxCustumer);
-      for (let i=0;i<hoursWork.length;i++){ 
-        this.numbCustperhour.push( Math.floor(Math.random() * (maxCustumer - minCustumer + 1) + minCustumer));
-    
-      }
-    },
-    
-    cookeiPerhour : function (){
-    
-     for(let hour=0;hour<hoursWork.length;hour++){
-    
-        this.cookeiSales.push(Math.ceil(this.numbCustperhour[hour]*this.avgCustumer)) ;
-        this.total += this.cookeiSales[hour]
-    
-     }
-    },
-    
-    render : function(){
-    
-    let container =document.getElementById('city');
-    let h2El = document.createElement('h2');
-    container.appendChild(h2El);
-    h2El.textContent=this.cityName;
-    let ulEl = document.createElement('ul');
-    container.appendChild(ulEl);
-          
-    for(let i=0;i<hoursWork.length;i++){
-    
-    let liEl = document.createElement('li');
-    ulEl.appendChild(liEl);
-    liEl.textContent=`${hoursWork[i]}:${this.cookeiSales[i]} Cookeis`
-    
-        }
-    
-    
-    let liEl2 =document.createElement('li');
-    ulEl.appendChild(liEl2);
-    liEl2.textContent =`Total ${this.total} Cookeis `
-    
-    
-    
-    }
-    
-    }
-    tokyo.randomCustumer();
-    tokyo.cookeiPerhour();
-    tokyo.render();
+paris.randomCustumer();
+paris.cookeiPerhour();
+paris.render();
 
-    let dubai = {
-        cityName : 'Dubai',
-        minCustumer :11 ,
-        maxCustumer : 38 ,
-        avgCustumer : 3.7,
-        numbCustperhour :[],
-        cookeiSales :[],
-        total:0,
-        
-        randomCustumer : function (minCustumer,maxCustumer){
-            minCustumer = Math.ceil(this.minCustumer);
-           maxCustumer = Math.floor(this.maxCustumer);
-          for (let i=0;i<hoursWork.length;i++){ 
-            this.numbCustperhour.push( Math.floor(Math.random() * (maxCustumer - minCustumer + 1) + minCustumer));
-        
-          }
-        },
-        
-        cookeiPerhour : function (){
-        
-         for(let hour=0;hour<hoursWork.length;hour++){
-        
-            this.cookeiSales.push(Math.ceil(this.numbCustperhour[hour]*this.avgCustumer)) ;
-            this.total += this.cookeiSales[hour]
-        
-         }
-        },
-        
-        render : function(){
-        
-        let container =document.getElementById('city');
-        let h2El = document.createElement('h2');
-        container.appendChild(h2El);
-        h2El.textContent=this.cityName;
-        let ulEl = document.createElement('ul');
-        container.appendChild(ulEl);
-              
-        for(let i=0;i<hoursWork.length;i++){
-        
-        let liEl = document.createElement('li');
-        ulEl.appendChild(liEl);
-        liEl.textContent=`${hoursWork[i]}:${this.cookeiSales[i]} Cookeis`
-        
-            }
-        
-        
-        let liEl2 =document.createElement('li');
-        ulEl.appendChild(liEl2);
-        liEl2.textContent =`Total ${this.total} Cookeis `
-        
-        
-        
-        }
-        
-        }
-        dubai.randomCustumer();
-        dubai.cookeiPerhour();
-        dubai.render();
+lima.randomCustumer();
+lima.cookeiPerhour();
+lima.render();
 
-        let paris = {
-            cityName : 'paris',
-            minCustumer :20 ,
-            maxCustumer : 38 ,
-            avgCustumer : 2.3,
-            numbCustperhour :[],
-            cookeiSales :[],
-            total:0,
-            
-            randomCustumer : function (minCustumer,maxCustumer){
-                minCustumer = Math.ceil(this.minCustumer);
-               maxCustumer = Math.floor(this.maxCustumer);
-              for (let i=0;i<hoursWork.length;i++){ 
-                this.numbCustperhour.push( Math.floor(Math.random() * (maxCustumer - minCustumer + 1) + minCustumer));
-            
-              }
-            },
-            
-            cookeiPerhour : function (){
-            
-             for(let hour=0;hour<hoursWork.length;hour++){
-            
-                this.cookeiSales.push(Math.ceil(this.numbCustperhour[hour]*this.avgCustumer)) ;
-                this.total += this.cookeiSales[hour]
-            
-             }
-            },
-            
-            render : function(){
-            
-            let container =document.getElementById('city');
-            let h2El = document.createElement('h2');
-            container.appendChild(h2El);
-            h2El.textContent=this.cityName;
-            let ulEl = document.createElement('ul');
-            container.appendChild(ulEl);
-                  
-            for(let i=0;i<hoursWork.length;i++){
-            
-            let liEl = document.createElement('li');
-            ulEl.appendChild(liEl);
-            liEl.textContent=`${hoursWork[i]}:${this.cookeiSales[i]} Cookeis`
-            
-                }
-            
-            
-            let liEl2 =document.createElement('li');
-            ulEl.appendChild(liEl2);
-            liEl2.textContent =`Total ${this.total} Cookeis `
-            
-            
-            
-            }
-            
-            }
-            paris.randomCustumer();
-            paris.cookeiPerhour();
-            paris.render();
+footer();
 
-            let lima = {
-                cityName : 'Lima',
-                minCustumer :2 ,
-                maxCustumer : 16 ,
-                avgCustumer : 4.6,
-                numbCustperhour :[],
-                cookeiSales :[],
-                total:0,
-                
-                randomCustumer : function (minCustumer,maxCustumer){
-                    minCustumer = Math.ceil(this.minCustumer);
-                   maxCustumer = Math.floor(this.maxCustumer);
-                  for (let i=0;i<hoursWork.length;i++){ 
-                    this.numbCustperhour.push( Math.floor(Math.random() * (maxCustumer - minCustumer + 1) + minCustumer));
-                
-                  }
-                },
-                
-                cookeiPerhour : function (){
-                
-                 for(let hour=0;hour<hoursWork.length;hour++){
-                
-                    this.cookeiSales.push(Math.ceil(this.numbCustperhour[hour]*this.avgCustumer)) ;
-                    this.total += this.cookeiSales[hour]
-                
-                 }
-                },
-                
-                render : function(){
-                
-                let container =document.getElementById('city');
-                let h2El = document.createElement('h2');
-                container.appendChild(h2El);
-                h2El.textContent=this.cityName;
-                let ulEl = document.createElement('ul');
-                container.appendChild(ulEl);
-                      
-                for(let i=0;i<hoursWork.length;i++){
-                
-                let liEl = document.createElement('li');
-                ulEl.appendChild(liEl);
-                liEl.textContent=`${hoursWork[i]}:${this.cookeiSales[i]} Cookeis`
-                
-                    }
-                
-                
-                let liEl2 =document.createElement('li');
-                ulEl.appendChild(liEl2);
-                liEl2.textContent =`Total ${this.total} Cookeis `
-                
-                
-                
-                }
-                
-                }
-                lima.randomCustumer();
-                lima.cookeiPerhour();
-                lima.render();
