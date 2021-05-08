@@ -19,9 +19,7 @@ function Cityes(cityName,minCustumer,maxCustumer,avgCookeisale) {
 }
 Cityes.prototype.randomCustumer=function() {
     
-    /*let minCustumer = Math.ceil(this.minCustumer);
-    let maxCustumer = Math.floor(this.maxCustumer);*/
-
+    
    for (let i=0;i<hoursWork.length;i++){ 
      this.numbCustperhour.push( Math.floor(Math.random() * (this.maxCustumer - this.minCustumer + 1) + this.minCustumer));
    }
@@ -41,7 +39,7 @@ Cityes.prototype.cookeiPerhour=function() {
 
 
 Cityes.prototype.render=function() {
-//this.cookeiPerhour();
+
  
 let tableTr = document.createElement('tr');
 
@@ -70,7 +68,7 @@ tableTd3.textContent =this.total;
 
 
 
-let seattle = new Cityes('seattle',23,65,6.3);
+let seattle = new Cityes('Seattle',23,65,6.3);
 let tokyo = new Cityes('Tokyo',3,24,12);
 let dubai = new Cityes('Dubai',11,38,37);
 let paris = new Cityes('paris',20,38,2.3);
@@ -150,4 +148,27 @@ lima.cookeiPerhour();
 lima.render();
 
 footer();
+
+let element=document.getElementById('Salmon');
+element.addEventListener('submit', addStore);
+function addStore(event) {
+  event.preventDefault();
+
+  
+  let StoreName=event.target.StoreName.value;
+
+  let minimumSales=event.target.MinimumCookeisSales .value;
+  
+  let maximumSales=event.target.MaximumCookeisSales.value;
+  
+  let avgSales=event.target.AvaregeCookeisSales.value;
+
+
+
+  let newStore= new Cityes(StoreName,minimumSales,maximumSales,avgSales);
+  
+  newStore.randomCustumer();
+  newStore.cookeiPerhour();
+  newStore.render();
+}
 
