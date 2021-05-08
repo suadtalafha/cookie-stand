@@ -2,21 +2,40 @@ header{
     background-color: #e5eaf5;
 
    padding: 20px;
+
+}
+
+ul{
+  list-style:none;
+
+
 }
 li{
   display: inline-block;
 
   margin-right: 100px;
+  
  
 }
 nav{
   background-color: rgba(229, 190, 219, 0.548);
   padding: 5px;
+  position: relative;
+  top: auto;
+  
+  right:100px;
+  
+  
+  left:-30px;
+  
+
 }
 #one{
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-style: dotted;
+  background-color: rgb(196, 159, 116);
 }
 
 body{
@@ -27,14 +46,11 @@ body{
 }
 a {
   display: block;
-  overflow: hidden;
     text-decoration: none;
-    /*background-color: #d6deee;*/
-    display: block;
-    float: left;
-    padding: 10px ;
-    text-align: center;
-    margin-left:20px;
+    
+    
+  margin-left:20px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 
@@ -42,7 +58,10 @@ a {
     color: hotpink;
     text-decoration:navajowhite;
     font-size: larger;
-    background-color: rgb(238, 229, 232);}
+    background-color: rgb(238, 229, 232);
+  cursor:-webkit-grab;
+  
+  }
   
    
   ol {
@@ -52,6 +71,7 @@ a {
     ;
   }
   ol li{
+   
     color: rgb(173, 24, 99);
     background-color: rgb(236, 195, 212);
   }
@@ -90,4 +110,16 @@ h1{
 }
 *{
   box-sizing: border-box;
+}
+#Salmon{
+  display: table;
+  background-color: rgb(131, 131, 212);
+}
+label{
+  display: table-cell;
+  padding: 2px;
+}
+input{
+  display: table-cell;
+  padding: 2px;
 }
