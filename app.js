@@ -172,3 +172,5 @@ function addStore(event) {
   newStore.render();
 }
 
+
+
