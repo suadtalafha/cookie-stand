@@ -269,3 +269,19 @@ nav ul li a:hover{
 .div5 img{
   width: 1042px;
 }
+
+#Salmon{
+  display: table;
+  background-color: rgb(197, 158, 74);
+}
+label{
+  display: table-cell;
+  padding: 2px;
+}
+input{
+  display: table-cell;
+  padding: 2px;
+}
+#city{
+  background-color: rgb(197, 158, 74);
+}

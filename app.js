@@ -4,7 +4,7 @@ let hoursWork =['6:00am','7:00am','8:00am','9:00am','10:00am','11:00am','12:00pm
 let container =document.getElementById('city');
 let table =document.createElement("table");
 container.appendChild(table);
-
+table.setAttribute('id', 'table1')
 let cityesArray =[];
 
 function Cityes(cityName,minCustumer,maxCustumer,avgCookeisale) {
@@ -166,10 +166,12 @@ function addStore(event) {
 
 
   let newStore= new Cityes(StoreName,minimumSales,maximumSales,avgSales);
-  
+  table.removeChild(table.lastElementChild);
+
   newStore.randomCustumer();
   newStore.cookeiPerhour();
   newStore.render();
+  footer();
 }
 
 
